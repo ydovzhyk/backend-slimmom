@@ -55,7 +55,7 @@ const login = async (req, res) => {
   const paylaod = {
     id: user._id,
   };
-  const accessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "1h" });
+  const accessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "5m" });
   const refreshToken = jwt.sign(paylaod, REFRESH_SECRET_KEY, { expiresIn: "24h" });
   const newSession = await Session.create({
     uid: user._id,
@@ -109,7 +109,7 @@ const refresh = async (req, res, next) => {
   await Session.deleteMany({ uid: req.user._id });
   const paylaod = {id: user._id,};
   const newSession = await Session.create({ uid: user._id });
-  const newAccessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "1h" });
+  const newAccessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "5m" });
   const newRefreshToken = jwt.sign(paylaod, REFRESH_SECRET_KEY, { expiresIn: "24h" });
 
   return res
