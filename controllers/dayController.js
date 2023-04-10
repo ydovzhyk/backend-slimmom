@@ -207,7 +207,7 @@ const getPeriodInfo = async (req, res, next) => {
 
     const periodDays = arrPeriodInfo.length;
     if (periodDays === 0) {
-        return res.status(201).send({
+        return res.status(200).send({
             kcalLeft: kcalLeftTotal,
             kcalConsumed: kcalConsumedTotal,
             dailyRate: dailyRateTotal,
@@ -224,7 +224,7 @@ const getPeriodInfo = async (req, res, next) => {
         kcalConsumedTotal += arrPeriodInfo[i].kcalConsumed;
         dailyRateTotal += arrPeriodInfo[i].dailyRate;
         };
-        return res.status(201).send({
+        return res.status(200).send({
             kcalLeft: kcalLeftTotal / periodDays,
             kcalConsumed: kcalConsumedTotal / periodDays,
             dailyRate: dailyRateTotal / periodDays,
