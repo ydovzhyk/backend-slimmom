@@ -10,7 +10,10 @@ const userSchema = new Schema(
   {
     username: { 
       type: String, 
-      required: [true, "User Name is required"] },
+      required: [true, "User Name is required"],
+      minlength: 2,
+      maxLength: 25,
+    },
     email: {
       type: String,
       required: [true, "Email is required"],

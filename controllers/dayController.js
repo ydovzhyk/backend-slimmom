@@ -187,7 +187,7 @@ const addNewProduct = async (req, res, next) => {
     const productName = req.body.title.ua
     const checkItem = await Product.find({ 'title.ua': { $regex: new RegExp('^' + productName, 'i') } });
     if (checkItem.length > 0) {
-        return res.status(201).send({ message: "Such a product is already in the database" });
+        return res.status(200).send({ message: "Such a product is already in the database" });
     }
     
     const newProduct = await Product.create({ ...req.body });

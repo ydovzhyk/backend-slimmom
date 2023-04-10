@@ -7,7 +7,6 @@ const { Session } = require("../models/session");
 const { SECRET_KEY, REFRESH_SECRET_KEY } = process.env;
 
 const { RequestError } = require("../helpers");
-const session = require("express-session");
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
@@ -55,7 +54,7 @@ const login = async (req, res) => {
   const paylaod = {
     id: user._id,
   };
-  const accessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "5m" });
+  const accessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "8h" });
   const refreshToken = jwt.sign(paylaod, REFRESH_SECRET_KEY, { expiresIn: "24h" });
   const newSession = await Session.create({
     uid: user._id,
@@ -109,7 +108,7 @@ const refresh = async (req, res, next) => {
   await Session.deleteMany({ uid: req.user._id });
   const paylaod = {id: user._id,};
   const newSession = await Session.create({ uid: user._id });
-  const newAccessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "5m" });
+  const newAccessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "8h" });
   const newRefreshToken = jwt.sign(paylaod, REFRESH_SECRET_KEY, { expiresIn: "24h" });
 
   return res
