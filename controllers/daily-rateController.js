@@ -90,7 +90,7 @@ const countDailyRate = async (req, res) => {
         summariesToUpdate = [];
         }
 
-    return res.status(201).send({
+    return res.status(200).send({
         dailyRate,
         summaries: summariesToUpdate,
         id: user._id,
