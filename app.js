@@ -7,7 +7,6 @@ const authRouter = require('./routes/api/auth')
 const dailyRateRouter = require('./routes/api/daily-rate')
 const dayRouter = require('./routes/api/day')
 const productRouter = require('./routes/api/product')
-const docRouter = require('./routes/api/doc')
 
 const app = express()
 
@@ -22,7 +21,6 @@ app.use("/auth", authRouter);
 app.use("/daily-rate", dailyRateRouter);
 app.use("/product", productRouter);
 app.use("/day", dayRouter);
-app.use("/doc", docRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
